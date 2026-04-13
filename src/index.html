@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BOOST FPS</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <!-- Custom Titlebar -->
+  <div class="titlebar">
+    <span class="titlebar-title">⚡ BOOST FPS</span>
+    <div class="titlebar-controls">
+      <button class="titlebar-btn theme-toggle" id="btn-theme-toggle" title="Alternar Tema Claro/Escuro">❂</button>
+      <button class="titlebar-btn" id="btn-minimize" title="Minimizar">─</button>
+      <button class="titlebar-btn" id="btn-maximize" title="Maximizar">☐</button>
+      <button class="titlebar-btn close" id="btn-close" title="Fechar">✕</button>
+    </div>
+  </div>
+
+  <!-- Admin Warning Banner -->
+  <div class="admin-warning" id="admin-warning" style="display:none;">
+    <span>🚨 PRIVILÉGIOS DE ADMINISTRADOR NECESSÁRIOS. FECHE E REINICIE COMO ADMIN.</span>
+  </div>
+
+  <!-- Main App -->
+  <div class="app-container">
+    <div class="main-content" id="main-content">
+
+      <!-- Header -->
+      <div class="header-section">
+        <h1>BOOST FPS</h1>
+        <p class="subtitle">Central de Otimização para Windows 10 & 11</p>
+        <div class="developed-by" style="text-align: center; color: var(--accent-light); font-size: 0.9em; margin-bottom: 20px; font-weight: 500;">Desenvolvido por Azucrinaldo</div>
+
+        <!-- Scanner & Backup Status -->
+        <div class="header-actions">
+          <button class="btn-scanner" id="btn-scanner">
+            <span class="btn-icon">📡</span> SCANNER PRO LAB
+          </button>
+        </div>
+        
+        <div class="backup-status warning" id="backup-status">
+          <span class="status-icon">⚠️</span>
+          <span id="backup-text">Verificando ponto de restauração...</span>
+          <button class="backup-btn" id="btn-create-backup" style="display:none;">
+            🛡️ CRIAR BACKUP AGORA
+          </button>
+        </div>
+      </div>
+
+      <!-- PRO MAX Button -->
+      <div class="section-header">⚡ Modo Completo</div>
+      <div class="modules-grid">
+        <div class="module-card pro-max disabled" id="card-pro-max" data-module="pro-max">
+          <span class="card-icon">🔥</span>
+          <div class="card-title">Azucri-BOOST FPS PRO MAX</div>
+          <div class="card-description">Executa TODAS as otimizações de uma vez. Máximo FPS, mínimo input lag. Modo agressivo total.</div>
+        </div>
+      </div>
+
+      <!-- Category Modules -->
+      <div class="section-header">🎯 Módulos de Otimização</div>
+      <div class="modules-grid">
+
+        <div class="module-card disabled" id="card-bloatware" data-module="bloatware">
+          <span class="card-icon">🗑️</span>
+          <div class="card-title">Azucri-Bloatware Killer</div>
+          <div class="card-description">Remove apps pré-instalados inúteis do Windows como Solitaire, Clipchamp, Weather, e outros que consomem memória em segundo plano.</div>
+        </div>
+
+        <div class="module-card ai disabled" id="card-ai" data-module="ai-removal">
+          <span class="card-icon">🤖</span>
+          <div class="card-title">Azucri-AI Exterminator</div>
+          <div class="card-description">Elimina completamente o Copilot, Recall, telemetria de IA e impede que o Windows reinstale esses componentes.</div>
+        </div>
+
+        <div class="module-card disabled" id="card-services" data-module="services">
+          <span class="card-icon">⚙️</span>
+          <div class="card-title">Azucri-Service Slayer</div>
+          <div class="card-description">Desativa serviços do Windows que rodam em segundo plano consumindo CPU e RAM sem necessidade para gaming.</div>
+        </div>
+
+        <div class="module-card registry disabled" id="card-registry" data-module="registry">
+          <span class="card-icon">📝</span>
+          <div class="card-title">Azucri-Registry Hack</div>
+          <div class="card-description">Aplica tweaks no registro do Windows: prioridade de CPU para jogos, reduz input lag, desativa telemetria e Game DVR.</div>
+        </div>
+
+        <div class="module-card memory disabled" id="card-memory" data-module="memory">
+          <span class="card-icon">🧠</span>
+          <div class="card-title">Azucri-RAM Cleaner</div>
+          <div class="card-description">Limpa a Standby List e o cache de memória RAM. Essencial para jogos com mapas grandes que sofrem com stuttering progressivo.</div>
+        </div>
+
+        <div class="module-card disabled" id="card-disk" data-module="disk">
+          <span class="card-icon">💽</span>
+          <div class="card-title">Azucri-Disk Sweeper</div>
+          <div class="card-description">Remove arquivos temporários, Prefetch e lixo acumulado no HD/SSD. Libera espaço e reduz tempo de carregamento.</div>
+        </div>
+
+        <div class="module-card power disabled" id="card-power" data-module="power">
+          <span class="card-icon">⚡</span>
+          <div class="card-title">Azucri-Power Unleash</div>
+          <div class="card-description">Ativa o plano de energia Ultimate Performance e desativa USB Selective Suspend para eliminar micro-travamentos de periféricos.</div>
+        </div>
+
+        <div class="module-card network disabled" id="card-network" data-module="network">
+          <span class="card-icon">🌐</span>
+          <div class="card-title">Azucri-Net Booster</div>
+          <div class="card-description">Otimiza configurações de rede: desativa Nagle, ajusta TcpAckFrequency e remove o limitador de tráfego do Windows para menor ping.</div>
+        </div>
+
+        <div class="module-card memory disabled" id="card-taskkiller" data-module="task-killer">
+          <span class="card-icon">💀</span>
+          <div class="card-title">Azucri-Task Killer</div>
+          <div class="card-description">Monitor de processos em tempo real. Mostra apps consumindo RAM/CPU e permite matar processos pesados com um clique.</div>
+        </div>
+
+      </div>
+
+      <!-- Danger Zone -->
+      <div class="section-header danger-section-header">☣️ DANGER ULTRA SECRET PRO BOOST</div>
+      <div class="modules-grid">
+        <div class="module-card danger-zone disabled" id="card-danger" data-module="danger-boost">
+          <span class="card-icon">☢️</span>
+          <div class="card-title">Azucri-BIOHAZARD</div>
+          <div class="card-description">Modificações nucleares no Kernel: desativa mitigations (Spectre/Meltdown), DMA e latências DPC. Focado apenas no máximo FPS competitivo. Perigoso para segurança do PC.</div>
+        </div>
+      </div>
+
+      <!-- Safety Section -->
+      <div class="section-header">🛡️ Segurança</div>
+      <div class="modules-grid">
+        <div class="module-card rollback disabled" id="card-rollback" data-module="rollback">
+          <span class="card-icon">⏪</span>
+          <div class="card-title">Azucri-RollBack</div>
+          <div class="card-description">Se arrependeu? Este botão restaura o Windows ao estado EXATO de antes das otimizações. Usa o ponto de restauração criado automaticamente pelo app.</div>
+        </div>
+      </div>
+
+      <!-- Result Log -->
+      <div class="result-log" id="result-log" style="display:none;">
+        <div class="result-log-header">
+           <span>📄 LOG DE AUDITORIA</span>
+           <button class="btn-save-audit" id="btn-save-audit">💾 SALVAR ARQUIVO DE AUDITORIA</button>
+        </div>
+        <div class="result-log-content" id="result-log-content"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Progress Overlay -->
+  <div class="progress-overlay" id="progress-overlay">
+    <div class="progress-batch-info" id="progress-batch-info"></div>
+    <div class="progress-title" id="progress-title">EXECUTANDO...</div>
+    <div class="progress-percent" id="progress-percent">0%</div>
+    <div class="progress-bar-container">
+      <div class="progress-bar-fill" id="progress-bar-fill"></div>
+    </div>
+    <div class="progress-message" id="progress-message">Preparando scripts...</div>
+    <button class="btn-cancel-progress" id="btn-cancel-progress">🚫 CANCELAR OPERAÇÃO</button>
+  </div>
+
+  <!-- Task Killer Overlay -->
+  <div class="task-killer-overlay" id="task-killer-overlay">
+    <div class="task-killer-header">
+      <h2>💀 AZUCRI-TASK KILLER</h2>
+      <button class="task-killer-close" id="task-killer-close">✕ FECHAR</button>
+    </div>
+    <table class="process-table" id="process-table">
+      <thead>
+        <tr>
+          <th>Processo</th>
+          <th>PID</th>
+          <th>RAM (MB)</th>
+          <th>CPU (%)</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody id="process-tbody"></tbody>
+    </table>
+  </div>
+
+  <!-- Danger Modal Overlay -->
+  <div class="danger-modal-overlay" id="danger-modal-overlay">
+    <div class="danger-modal-box">
+      <!-- (Code suppressed for brevity since it's unmodified, wait, I need to keep it intact) -->
+      <div class="danger-modal-icon">☣️</div>
+      <div class="danger-modal-title">ATENÇÃO RISCO DE SEGURANÇA EXTREMO</div>
+      
+      <div class="danger-modal-pros-cons">
+        <ul>
+          <li class="pro">✔️ <strong>PRO:</strong> Ganho estimado de até +15% de FPS Bruto</li>
+          <li class="pro">✔️ <strong>PRO:</strong> Consistência absurda no Frametime (Min. FPS)</li>
+          <li class="con">❌ <strong>CONTRA:</strong> Desativa as mitigações contra Meltdown/Spectre no nivel de Kernel (Abre brechas de segurança graves contra scripts e spywares).</li>
+          <li class="con">❌ <strong>CONTRA:</strong> Desativa Proteção DMA. Riscos físicos ao USB/PCIe.</li>
+        </ul>
+      </div>
+
+      <div class="danger-modal-text">
+        Este módulo opera removendo os <strong>"Airbags de segurança lógicos e físicos"</strong> do Windows para acelerar a renderização do processador.<br><br>
+        Não é recomendado se você utiliza o PC para trabalhar, acessar banco, ou se costuma baixar arquivos obscuros. Focado exlusivamente em <strong>E-Sports Competitivo Profissional</strong>.
+      </div>
+
+      <label class="danger-checkbox-container">
+        <input type="checkbox" id="danger-accept-chk">
+        <span>EU ENTENDO OS RISCOS E QUERO APLICAR O TWEAK BIOHAZARD</span>
+      </label>
+
+      <div class="danger-modal-actions">
+        <button class="btn-danger-cancel" id="btn-danger-cancel">CANCELAR</button>
+        <button class="btn-danger-execute" id="btn-danger-execute" disabled>EXECUTAR BIOHAZARD</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Module Selection Modal Overlay -->
+  <div class="selection-modal-overlay" id="selection-modal-overlay">
+    <div class="selection-modal-box">
+      <div class="selection-modal-header">
+        <h2 id="selection-modal-title">MODULO X</h2>
+        <button class="selection-modal-close" id="selection-modal-close">✕</button>
+      </div>
+      <div class="selection-modal-desc" id="selection-modal-desc">
+        Selecione os scripts deste módulo que deseja executar.
+      </div>
+      <div class="selection-modal-toolbar">
+        <button class="btn-select-all" id="btn-select-all">Selecionar Todos</button>
+        <button class="btn-select-none" id="btn-select-none">Desmarcar Todos</button>
+      </div>
+      <div class="selection-list" id="selection-list">
+        <!-- Checkboxes injected by JS -->
+      </div>
+      <div class="selection-modal-footer">
+        <button class="btn-execute-selection" id="btn-execute-selection">⚡ INICIAR SELEÇÃO</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

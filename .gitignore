@@ -1,0 +1,24 @@
+# Dependency directories
+node_modules/
+
+# Build outputs
+/dist
+/build
+out/
+
+# IDE files
+.vscode/
+.idea/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Backup scripts (opcional, se não quiser subir backups locais)
+/scripts/backup/manual-backups/

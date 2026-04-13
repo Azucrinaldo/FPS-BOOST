@@ -1,0 +1,375 @@
+/* =============================================
+   AZUCRINALDO BOOST FPS — Design System Cyberpunk
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-deep: #0a0a0f;
+  --bg-panel: #0d0d15;
+  --bg-card: rgba(15, 15, 25, 0.85);
+  --bg-card-hover: rgba(20, 20, 35, 0.95);
+  --neon-cyan: #00f0ff;
+  --neon-cyan-dim: rgba(0, 240, 255, 0.15);
+  --neon-magenta: #ff006e;
+  --neon-magenta-dim: rgba(255, 0, 110, 0.15);
+  --neon-yellow: #f5ff00;
+  --neon-yellow-dim: rgba(245, 255, 0, 0.15);
+  --neon-red: #ff2a2a;
+  --neon-red-dim: rgba(255, 42, 42, 0.15);
+  --neon-green: #00ff88;
+  --neon-green-dim: rgba(0, 255, 136, 0.15);
+  --text-primary: #ffffff;
+  --text-secondary: #b3ccff;
+  --text-dim: #8899aa;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --font-display: 'Orbitron', monospace;
+  --font-body: 'Rajdhani', 'Segoe UI', sans-serif;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+body {
+  text-shadow: 0 0 3px rgba(0, 240, 255, 0.4);
+  animation: neon-text-pulse 3s infinite alternate;
+}
+
+body.light-theme {
+  --bg-deep: #f4f5f7;
+  --bg-panel: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #ffffff;
+  
+  /* Cores sólidas profissionais, nada de neon fluorescente no tema claro */
+  --neon-cyan: #0958d9; /* Azul tech profundo */
+  --neon-cyan-dim: rgba(9, 88, 217, 0.08);
+  --neon-magenta: #722ed1; /* Roxo vibrante e sólido */
+  --neon-magenta-dim: rgba(114, 46, 209, 0.08);
+  --neon-yellow: #d46b08; /* Laranja queimado e legível */
+  --neon-yellow-dim: rgba(212, 107, 8, 0.08);
+  --neon-red: #cf1322; /* Vermelho alerta puro */
+  --neon-red-dim: rgba(207, 19, 34, 0.08);
+  --neon-green: #389e0d; /* Verde sucesso profundo */
+  --neon-green-dim: rgba(56, 158, 13, 0.08);
+  
+  /* Textos Absolutos e Limpos */
+  --text-primary: #1f1f1f;
+  --text-secondary: #595959;
+  --text-dim: #8c8c8c;
+  
+  --border-subtle: rgba(0, 0, 0, 0.08);
+  text-shadow: none;
+}
+
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-body);
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+
+/* Scanline overlay */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.04) 2px,
+    rgba(0, 0, 0, 0.04) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+body.light-theme::after {
+  opacity: 0.15; /* Make scanline extremely faint in light mode */
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--neon-cyan-dim);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-cyan);
+}
+
+/* =============================================
+   TITLEBAR (Custom frameless)
+   ============================================= */
+.titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 38px;
+  background: rgba(10, 10, 15, 0.95);
+  border-bottom: 1px solid var(--border-subtle);
+  -webkit-app-region: drag;
+  padding: 0 8px 0 16px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+body.light-theme .titlebar {
+  background: #ffffff;
+}
+.titlebar-title {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 10px var(--neon-cyan-dim);
+}
+.titlebar-controls {
+  display: flex;
+  gap: 2px;
+  -webkit-app-region: no-drag;
+}
+.titlebar-btn {
+  width: 36px;
+  height: 30px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: var(--transition-fast);
+}
+.titlebar-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+}
+.titlebar-btn.close:hover {
+  background: var(--neon-red);
+  color: #fff;
+}
+
+/* =============================================
+   LAYOUT
+   ============================================= */
+.app-container {
+  margin-top: 38px;
+  height: calc(100vh - 38px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px 32px;
+}
+
+/* =============================================
+   HEADER SECTION
+   ============================================= */
+.header-section {
+  text-align: center;
+  margin-bottom: 32px;
+  position: relative;
+}
+.header-section h1 {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+  margin-bottom: 6px;
+}
+.header-section .subtitle {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+}
+
+/* Backup status bar */
+.backup-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 16px;
+  padding: 10px 24px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.backup-status.ok {
+  background: var(--neon-green-dim);
+  border: 1px solid var(--neon-green-dim);
+  color: var(--neon-green);
+}
+.backup-status.warning {
+  background: var(--neon-yellow-dim);
+  border: 1px solid var(--neon-yellow-dim);
+  color: var(--neon-yellow);
+  animation: pulse-border 2s infinite;
+}
+.backup-status.error {
+  background: var(--neon-red-dim);
+  border: 1px solid var(--neon-red-dim);
+  color: var(--neon-red);
+}
+.backup-status .status-icon {
+  font-size: 18px;
+}
+
+/* =============================================
+   PROGRESS OVERLAY
+   ============================================= */
+.progress-overlay {
+  display: none;
+  position: fixed;
+  top: 38px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(5, 5, 10, 0.92);
+  backdrop-filter: blur(8px);
+  z-index: 500;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.progress-overlay.active {
+  display: flex;
+}
+.progress-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--neon-cyan);
+}
+.progress-bar-container {
+  width: 420px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  position: relative;
+}
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+  border-radius: 10px;
+  transition: width 0.4s ease;
+  position: relative;
+}
+.progress-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  animation: shimmer 2s infinite;
+}
+.progress-percent {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+.progress-message {
+  font-size: 14px;
+  color: var(--text-secondary);
+  max-width: 500px;
+  text-align: center;
+}
+.progress-batch-info {
+  font-family: var(--font-display);
+  font-size: 12px;
+  color: var(--neon-magenta);
+  letter-spacing: 1px;
+}
+
+/* =============================================
+   ANIMATIONS
+   ============================================= */
+@keyframes pulse-border {
+  0%, 100% { border-color: rgba(245, 255, 0, 0.3); }
+  50% { border-color: rgba(245, 255, 0, 0.7); }
+}
+
+@keyframes neon-glow {
+  0%, 100% { box-shadow: 0 0 5px currentColor, 0 0 15px currentColor; }
+  50% { box-shadow: 0 0 10px currentColor, 0 0 30px currentColor, 0 0 50px currentColor; }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes neon-text-pulse {
+  0% { text-shadow: 0 0 2px rgba(0, 240, 255, 0.2); }
+  100% { text-shadow: 0 0 6px rgba(0, 240, 255, 0.6), 0 0 2px rgba(255, 255, 255, 0.3); }
+}

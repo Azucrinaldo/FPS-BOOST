@@ -1,0 +1,44 @@
+{
+  "name": "azucrinaldo-boost-fps",
+  "version": "1.0.0",
+  "description": "Central de otimização Windows para maximizar FPS e reduzir input lag em jogos competitivos",
+  "main": "electron/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "build": "electron-builder --win",
+    "test": "node tests/test-scripts.js"
+  },
+  "author": "Azucrinaldo",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.0.0"
+  },
+  "build": {
+    "appId": "com.azucrinaldo.boostfps",
+    "productName": "BOOST FPS",
+    "win": {
+      "target": "nsis",
+      "requestedExecutionLevel": "requireAdministrator",
+      "icon": "src/assets/icons/app-icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "src/assets/icons/app-icon.ico"
+    },
+    "files": [
+      "electron/**/*",
+      "src/**/*",
+      "scripts/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "scripts",
+        "to": "scripts",
+        "filter": ["**/*"]
+      }
+    ]
+  }
+}

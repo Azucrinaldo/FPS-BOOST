@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BOOST FPS</title>
+  <link rel="stylesheet" href="css/intro.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="intro-container" id="intro-container">
+
+    <!-- Background image with parallax -->
+    <div class="intro-bg" id="intro-bg"></div>
+
+    <!-- Overlay effects -->
+    <div class="overlay-scanlines"></div>
+    <div class="overlay-noise"></div>
+    <div class="overlay-vignette"></div>
+    <div class="overlay-grid"></div>
+
+    <!-- Glitch flicker layer -->
+    <div class="glitch-flash" id="glitch-flash"></div>
+
+    <!-- Main content -->
+    <div class="intro-content" id="intro-content">
+
+      <!-- Subtitle above -->
+      <div class="intro-pre-text" id="intro-pre-text">SISTEMA DE OTIMIZAÇÃO</div>
+
+      <!-- Logo with glitch layers -->
+      <div class="intro-logo-wrapper" id="intro-logo-wrapper">
+        <div class="intro-logo glitch-layer" data-text="BOOST FPS" aria-hidden="true">BOOST FPS</div>
+        <div class="intro-logo glitch-layer glitch-r" data-text="BOOST FPS" aria-hidden="true">BOOST FPS</div>
+        <div class="intro-logo glitch-layer glitch-b" data-text="BOOST FPS" aria-hidden="true">BOOST FPS</div>
+        <div class="intro-logo main-logo" id="main-logo">BOOST FPS</div>
+      </div>
+
+      <!-- BOOST FPS sub-title -->
+      <div class="intro-boost" id="intro-boost">
+        <span class="boost-bracket">[</span>
+        <span class="boost-text">DESENVOLVIDO POR AZUCRINALDO</span>
+        <span class="boost-bracket">]</span>
+      </div>
+
+      <!-- Terminal-style status line -->
+      <div class="intro-terminal" id="intro-terminal">
+        <span class="terminal-cursor">▌</span>
+        <span class="terminal-text" id="terminal-text"></span>
+      </div>
+
+      <!-- Loading bar -->
+      <div class="intro-loading" id="intro-loading">
+        <div class="intro-loading-track">
+          <div class="intro-loading-bar" id="intro-loading-bar"></div>
+          <div class="intro-loading-glow"></div>
+        </div>
+        <div class="intro-loading-percent" id="intro-loading-percent">0%</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Audio (user will add file) -->
+  <audio id="intro-audio" preload="auto">
+    <source src="assets/intro-audio.mp3" type="audio/mpeg">
+  </audio>
+
+  <button class="skip-btn" id="skip-btn">
+    <span class="skip-icon">⏩</span> SKIP
+  </button>
+
+  <script src="js/intro.js"></script>
+</body>
+</html>
