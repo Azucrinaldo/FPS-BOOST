@@ -17,18 +17,18 @@ O **BOOST FPS** é uma central de otimização Windows ultravisível, projetada 
   <table>
     <tr>
       <td width="50%">
-        <img src="src/assets/docs/dashboard.png" width="100%" alt="Dashboard Principal">
-        <p align="center"><i>Dashboard Principal - Controle Total</i></p>
+        <img src="src/assets/docs/dashboard.png" width="100%" alt="Dashboard Real">
+        <p align="center"><i>Dashboard Principal - Interface Real</i></p>
       </td>
       <td width="50%">
-        <img src="src/assets/docs/scanner.png" width="100%" alt="Scanner Lab">
-        <p align="center"><i>Scanner Pro Lab - Auditoria em Tempo Real</i></p>
+        <img src="src/assets/docs/scanner.png" width="100%" alt="Scanner Real">
+        <p align="center"><i>Scanner Pro Lab - Interface Real</i></p>
       </td>
     </tr>
     <tr>
       <td colspan="2" align="center">
-        <img src="src/assets/docs/biohazard.png" width="80%" alt="Módulo Biohazard">
-        <p align="center"><i>Módulo BIOHAZARD - Otimizações de Kernel</i></p>
+        <img src="src/assets/docs/biohazard.png" width="80%" alt="Intro Real">
+        <p align="center"><i>Introdução e Visual Cinematográfico Real</i></p>
       </td>
     </tr>
   </table>
