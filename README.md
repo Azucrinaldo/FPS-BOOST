@@ -59,6 +59,43 @@ O coração do Azucrinaldo BOOST FPS são scripts PowerShell altamente otimizado
 | **🌐 Net Booster** | `netsh int tcp set global` | Desativa algoritmos de throttling e Nagle para reduzir o Ping. |
 | **☢️ Kernel/Extreme** | `bcdedit /set ...` | Ajusta o Timer Resolution e desativa mitigações Spectre/Meltdown. |
 
+<details>
+<summary>🔍 <b>Dicionário de Otimizações (Exaustivo)</b></summary>
+
+Abaixo você encontra a lista completa de cada script individual do projeto e o que eles fazem "debaixo do capô":
+
+### 🤖 IA & Telemetria
+- **disable-ai-telemetry.ps1**: Bloqueia o rastreamento de diagnósticos (`AllowTelemetry = 0`).
+- **remove-copilot.ps1**: Desinstala pacotes APPX do Copilot e oculta o botão da barra de tarefas.
+- **remove-recall.ps1**: Desativa a captura de Snapshots e análise de dados via IA (`AllowRecall = 0`).
+
+### 💿 Disco & Limpeza
+- **clean-temp-files.ps1**: Varre as pastas `/TEMP` do usuário e do sistema, além de esvaziar a Lixeira.
+- **clean-prefetch.ps1**: Limpa dados de cache de inicialização para reconstrução otimizada.
+- **disk-optimization.ps1**: Executa reparos via `SFC` e limpeza de componentes via `DISM`.
+
+### 🧠 Memória RAM
+- **clear-ram-cache.ps1**: Força o Garbage Collection do sistema para liberar RAM de processos zumbis.
+- **clear-standby-list.ps1**: Esvazia a lista de espera da memória (Standby List), reduzindo micro-stutters.
+- **task-killer.ps1**: Módulo que identifica e permite encerrar processos que consomem mais de 80MB.
+
+### 🌐 Rede (Latência)
+- **network-optimization.ps1**: Desativa o Algoritmo de Nagle (TcpNoDelay) e otimiza a pilha TCP.
+- **disable-throttling.ps1**: Remove o limitador de rede multimídia do Windows (`NetworkThrottlingIndex`).
+
+### ⚡ Energia & Periféricos
+- **ultimate-power-plan.ps1**: Desbloqueia e ativa o plano de energia oculta "Ultimate Performance".
+- **disable-usb-suspend.ps1**: Impede que portas USB entrem em suspensão, reduzindo lag de mouse/teclado.
+
+### 📝 Registro (Gaming)
+- **gaming-registry.ps1**: Ajusta a prioridade de janelas (`Win32PrioritySeparation`) e prioridade de GPU.
+- **input-lag-fix.ps1**: Define curva de mouse linear (1:1) e reduz o tamanho do buffer das periféricos.
+- **privacy-registry.ps1**: Impede que aplicativos rodem em segundo plano sem necessidade.
+
+> 💡 **Para detalhes técnicos completos (chaves de registro e comandos PowerShell), consulte o [Catálogo Completo de Scripts](docs/FULL_SCRIPT_LIST.md).**
+</details>
+
+
 ---
 
 ## 🛡️ Segurança: Azucri-RollBack
