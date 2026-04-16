@@ -9,6 +9,13 @@ contextBridge.exposeInMainWorld('azucri', {
   // Intro
   introFinished: () => ipcRenderer.send('intro-finished'),
 
+  // License
+  checkLicense: () => ipcRenderer.invoke('check-license'),
+  activateLicense: (key) => ipcRenderer.invoke('activate-license', key),
+  getTrialRemaining: () => ipcRenderer.invoke('get-trial-remaining'),
+  getHwId: () => ipcRenderer.invoke('get-hwid'),
+  continueTrial: () => ipcRenderer.send('continue-trial'),
+
   // Script execution
   runScript: (scriptPath) => ipcRenderer.invoke('run-script', scriptPath),
   runScriptsBatch: (scriptPaths) => ipcRenderer.invoke('run-scripts-batch', scriptPaths),

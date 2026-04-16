@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azucrinaldo BOOST FPS - Licença</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/license.css">
+</head>
+<body>
+    <!-- Titlebar customizada -->
+    <header class="titlebar draggable">
+        <div class="drag-region">
+            <div class="window-controls no-drag">
+                <button class="control-btn minimize" id="minimizeBtn" title="Minimizar">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button class="control-btn close" id="closeBtn" title="Fechar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="license-container">
+        <div class="logo-area">
+            <h1 class="glitch" data-text="AZUCRINALDO">AZUCRINALDO</h1>
+            <p class="subtitle">BOOST FPS <span class="version">v2.0 Premium</span></p>
+        </div>
+
+        <div class="status-panel" id="statusPanel">
+            <div class="status-badge" id="statusBadge">Verificando...</div>
+            <p class="status-message" id="statusMessage">Aguarde enquanto verificamos sua licença.</p>
+            
+            <div class="trial-timer hidden" id="trialTimerContainer">
+                <h3>Tempo de Avaliação Restante:</h3>
+                <div class="timer" id="trialTimer">30:00</div>
+                <button class="btn btn-secondary mt-3" id="continueTrialBtn">
+                    <i class="fas fa-play"></i> Continuar Usando (Trial)
+                </button>
+            </div>
+        </div>
+
+        <div class="activation-panel">
+            <h2><i class="fas fa-key"></i> Ativar Chave Premium</h2>
+            <p class="help-text">Insira sua chave de ativação para desbloquear todos os recursos permanentemente.</p>
+            
+            <div class="input-group">
+                <input type="text" id="licenseInput" class="license-input" placeholder="AZFPS-XXXXX-XXXXX-XXXXX-XXXXX" autocomplete="off" spellcheck="false">
+            </div>
+            
+            <button class="btn btn-primary" id="activateBtn">
+                <i class="fas fa-unlock-alt"></i> Ativar Agora
+            </button>
+            
+            <div class="feedback hidden" id="feedbackMessage"></div>
+        </div>
+
+        <div class="footer-info">
+            <p>ID da Máquina: <code id="hwidDisplay">Gerando...</code></p>
+            <p class="small">Envie este ID caso precise de suporte.</p>
+        </div>
+    </main>
+
+    <script src="js/license.js"></script>
+</body>
+</html>

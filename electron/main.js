@@ -2,9 +2,11 @@ const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
 const fs = require('fs');
 const { runScript, getScriptsPath, cancelActiveScripts, checkIsCancelled } = require('./script-runner');
+const licenseManager = require('./license-manager');
 
 let mainWindow;
 let introWindow;
+let licenseWindow;
 
 function createIntroWindow() {
   introWindow = new BrowserWindow({
@@ -22,6 +24,24 @@ function createIntroWindow() {
   });
   introWindow.loadFile(path.join(__dirname, '..', 'src', 'intro.html'));
   introWindow.setMenuBarVisibility(false);
+}
+
+function createLicenseWindow() {
+  licenseWindow = new BrowserWindow({
+    width: 800,
+    height: 500,
+    frame: false,
+    transparent: false,
+    resizable: false,
+    backgroundColor: '#0a0a0f',
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js'),
+      nodeIntegration: false,
+      contextIsolation: true
+    }
+  });
+  licenseWindow.loadFile(path.join(__dirname, '..', 'src', 'license.html'));
+  licenseWindow.setMenuBarVisibility(false);
 }
 
 function createMainWindow() {
@@ -42,8 +62,15 @@ function createMainWindow() {
   mainWindow.setMenuBarVisibility(false);
 }
 
-app.whenReady().then(() => {
-  createIntroWindow();
+app.whenReady().then(async () => {
+  const status = await licenseManager.getLicenseStatus();
+  
+  if (status.status === 'expired' || status.status === 'revoked' || status.status === 'invalid') {
+    createLicenseWindow();
+  } else {
+    // Se premium ou trial válido
+    createIntroWindow();
+  }
 });
 
 app.on('window-all-closed', () => {
@@ -59,9 +86,47 @@ ipcMain.on('intro-finished', () => {
   createMainWindow();
 });
 
+// IPC: License handlers
+ipcMain.handle('check-license', async () => {
+  return await licenseManager.getLicenseStatus();
+});
+
+ipcMain.handle('activate-license', async (event, key) => {
+  const result = await licenseManager.activateLicense(key);
+  if (result.success) {
+    if (licenseWindow) {
+      licenseWindow.close();
+      licenseWindow = null;
+    }
+    createIntroWindow();
+  }
+  return result;
+});
+
+ipcMain.handle('get-trial-remaining', () => {
+  return licenseManager.getTrialRemaining();
+});
+
+ipcMain.handle('get-hwid', () => {
+  return licenseManager.hardwareId;
+});
+
+// Continuar pro app principal (trial ativo a partir da tela de licença)
+ipcMain.on('continue-trial', async () => {
+  const status = await licenseManager.getLicenseStatus();
+  if (status.status === 'trial') {
+    if (licenseWindow) {
+      licenseWindow.close();
+      licenseWindow = null;
+    }
+    createIntroWindow();
+  }
+});
+
 // IPC: Window controls
 ipcMain.on('window-minimize', () => {
   if (mainWindow) mainWindow.minimize();
+  if (licenseWindow) licenseWindow.minimize();
 });
 ipcMain.on('window-maximize', () => {
   if (mainWindow) {
@@ -70,6 +135,7 @@ ipcMain.on('window-maximize', () => {
 });
 ipcMain.on('window-close', () => {
   if (mainWindow) mainWindow.close();
+  if (licenseWindow) licenseWindow.close();
 });
 
 // IPC: Run a PowerShell script
